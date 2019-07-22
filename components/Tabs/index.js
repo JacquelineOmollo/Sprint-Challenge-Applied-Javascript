@@ -13,6 +13,8 @@
 axios.get(` https://lambda-times-backend.herokuapp.com/topics`)
   .then(data => {
     console.log('Success! ', data.data);
+    const tabData = document.querySelectorAll('.tab');
+    tabData.appendChild(tabCreation(data));
 
   })
 
@@ -21,6 +23,11 @@ axios.get(` https://lambda-times-backend.herokuapp.com/topics`)
 
   })
 
-
+function tabCreation(data) {
+  const tab = document.createElement('div');
+  tab.classList.add('tab');
+  tab.appendChild(topics);
+  tab.innerText = data.topics;
+}
 
 

@@ -17,3 +17,41 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+const container = document.querySelector('.card-container');
+
+axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
+  .then(data => {
+    console.log('Success!', data.data);
+
+  })
+
+  .catch(error => {
+    console.log('Error: ', error);
+  })
+
+
+
+function promgramArticles() {
+
+  const card = document.createElement('div');
+  const headline = document.createElement('div');
+  const author = document.createElement('div');
+  const img_container = document.createElement('div');
+  const img = document.createElement('img');
+
+
+  card.classList.add('card');
+  img_container.classList.add('img_container');
+  author.classList.add('authorName');
+  headline.classList.add('headline');
+
+
+  headline.textContent = 'article';
+
+  card.appendChild(img_container);
+  card.appendChild(author);
+  img_container.appendChild(img);
+  author.appendChild(img_container);
+  card.appendChild(headline);
+}
