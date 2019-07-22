@@ -22,8 +22,13 @@ const container = document.querySelector('.card-container');
 
 axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
   .then(data => {
-    console.log('Success!', data.data);
-
+    console.log('Success!', data);
+    // for (topic in data.data.articles) {
+    //   data.data.articles.forEach(data => {
+    //     const cardData = promgramArticles(data);
+    //     container.appendChild(cardData)
+    //   });
+  }
   })
 
   .catch(error => {
@@ -32,7 +37,7 @@ axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
 
 
 
-function promgramArticles() {
+function promgramArticles(data) {
 
   const card = document.createElement('div');
   const headline = document.createElement('div');
@@ -40,6 +45,11 @@ function promgramArticles() {
   const img_container = document.createElement('div');
   const img = document.createElement('img');
 
+  card.appendChild(img_container);
+  card.appendChild(author);
+  img_container.appendChild(img);
+  author.appendChild(img_container);
+  card.appendChild(headline);
 
   card.classList.add('card');
   img_container.classList.add('img_container');
@@ -47,11 +57,7 @@ function promgramArticles() {
   headline.classList.add('headline');
 
 
-  headline.textContent = 'article';
+  headline.textContent = articles;
 
-  card.appendChild(img_container);
-  card.appendChild(author);
-  img_container.appendChild(img);
-  author.appendChild(img_container);
-  card.appendChild(headline);
+  return card;
 }
